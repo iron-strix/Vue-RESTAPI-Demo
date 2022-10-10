@@ -17,13 +17,17 @@ onUnmounted(() => {
 
 <template>
   <main
-    v-if="currentCharacter"
-    class="flex min-h-screen flex-col items-center justify-center gap-6 bg-gradient-to-r from-fuchsia-900 to-red-700 text-white"
+    class="min-h-screen gap-6 bg-gradient-to-r from-fuchsia-900 to-red-700 text-white"
   >
-    <img :src="currentCharacter.imageUrl" :alt="currentCharacter.name" />
-    <h1 class="text-6xl font-thin text-white">
-      Hi, I'm Character {{ currentCharacter.name }}
-    </h1>
-    <pre>{{ currentCharacter }}</pre>
+    <div
+      v-if="currentCharacter"
+      class="flex flex-col items-center justify-center pt-4"
+    >
+      <img :src="currentCharacter.imageUrl" :alt="currentCharacter.name" />
+      <h1 class="text-6xl font-thin text-white">
+        Hi, I'm Character {{ currentCharacter.name }}
+      </h1>
+      <pre>{{ currentCharacter }}</pre>
+    </div>
   </main>
 </template>

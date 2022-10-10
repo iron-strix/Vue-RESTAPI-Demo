@@ -2,7 +2,8 @@ import { ref } from 'vue'
 import useApi from '@/composables/useAPI'
 
 const characters = ref([])
-const currentCharacter = ref({})
+const currentCharacter = ref(null)
+const firstLoad = ref(true)
 const api = useApi()
 const page = ref(1)
 
@@ -22,7 +23,13 @@ const useCharacters = () => {
     currentCharacter.value = data
   }
 
-  return { characters, fetchCharacters, getCharacter, currentCharacter }
+  return {
+    characters,
+    fetchCharacters,
+    getCharacter,
+    currentCharacter,
+    firstLoad,
+  }
 }
 
 export default useCharacters

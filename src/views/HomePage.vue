@@ -1,8 +1,16 @@
 <script setup>
+import { onMounted } from 'vue'
 import BaseCard from '@/components/BaseCard.vue'
 import useCharacters from '@/composables/useCharacters'
 
-const { characters, fetchCharacters } = useCharacters()
+const { characters, fetchCharacters, firstLoad } = useCharacters()
+
+onMounted(async () => {
+  if (firstLoad.value) {
+    await fetchCharacters()
+    firstLoad.value = false
+  }
+})
 </script>
 
 <template>
@@ -14,7 +22,7 @@ const { characters, fetchCharacters } = useCharacters()
     🚀
   </button>
   <main class="min-h-screen bg-gradient-to-r from-fuchsia-900 to-red-700">
-    <div class="container mx-auto grid grid-cols-4 gap-4 py-8">
+    <div class="container mx-auto grid grid-cols-8 gap-4 py-8">
       <BaseCard
         v-for="character in characters"
         :key="character._id"
