@@ -6,8 +6,8 @@ const api = useApi()
 
 const useCharacters = () => {
   const fetchCharacters = async () => {
-    const response = await api.instance.get('/characters')
-    console.log(response)
+    const { data } = await api.instance.get('/characters')
+    characters.value.push(...data.data)
   }
   return { characters, fetchCharacters }
 }
